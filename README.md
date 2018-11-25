@@ -1,2 +1,2 @@
-# project-euler
-Solutions to Project Euler problems
+# python-codes
+All the python codes i practiced
