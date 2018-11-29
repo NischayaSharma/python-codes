@@ -12,7 +12,7 @@ try:
     def main(c,numOfThread):
         while True:
             rcvdData = c.recv(1024).decode();
-            print "Thread:", numOfThread, "S:", rcvdData;
+            print "Thread:", numOfThread+1, "S:", rcvdData;
             sendData = raw_input("N: ");
             c.send(sendData.encode());
             if(sendData == "Bye" or sendData == "bye"):
