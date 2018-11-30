@@ -26,6 +26,6 @@ try:
         i+=1;
 
 except KeyboardInterrupt:
-    print "Closing Connection and freeing the port."
+    print "\nClosing Connection and freeing the port."
     c.close();
     sys.exit();
