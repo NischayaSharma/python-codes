@@ -36,7 +36,6 @@ def fileUpdate(lineNum):
     fwu.close();
 
 def fileDelete(lineNum):
-    empFName, empLName, empSalary,  empEmailId = raw_input("Enter employee first name: "), raw_input("Enter employee last name: "), raw_input("Enter employee salary: "), raw_input("Enter employee Email ID: ");
     fr = open(string, "r");
     lines = fw.readlines();
     fr.close();
@@ -88,13 +87,11 @@ def crud():
     #Closing the file
     fw.close();
 
-def main():
-    try:
-        string = os.path.dirname(os.path.realpath(__file__))+'/'+FileName;
-        fw = open(string, "a+");
-        crud();
-    except Exception as e:
-        print e;
-        fw.close();
-        sys.exit();
-main();
+try:
+    string = os.path.dirname(os.path.realpath(__file__))+'/'+FileName;
+    fw = open(string, "a+");
+    crud();
+except Exception as e:
+    print e;
+    fw.close();
+    sys.exit();
