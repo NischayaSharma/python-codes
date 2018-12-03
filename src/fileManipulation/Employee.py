@@ -9,11 +9,9 @@ def createEmployee():
     empDetails = [];
     for i in range(numOfEmployees):
         empFName, empLName, empSalary,  empEmailId = raw_input("Enter employee first name: "), raw_input("Enter employee last name: "), raw_input("Enter employee salary: "), raw_input("Enter employee Email ID: ");
-        string = empFName+"|"+empLName+"|"+empSalary+"|"+empEmailId;
+        string = empFName+"|"+empLName+"|"+empSalary+"|"+empEmailId+"\n";
         empDetails.append(string);
-    with open(FilePath,"a+") as fo:
-        fo.seek(0);
-        fh.createFile(fo,numOfEmployees,empDetails,CounterFilePath);
+        fh.createFile(FilePath,numOfEmployees,empDetails,CounterFilePath);
 
 
 def searchEmployee():
@@ -31,41 +29,37 @@ def searchEmployee():
         print "Wrong Choice!!!";
 
     searchStr = raw_input();
-    with open(FilePath,"r") as fo:
-        string = fh.readFile(fo,searchStr,choice);
+    string = fh.readFile(FilePath,searchStr,choice);
     print('\n'.join(string));
 
 
 def updateEmployee():
     print "Leave the entries empty if you dont want to update that entry.";
     lineNum = input("Enter the line number of the entry you want to update: ");
-    with open(FilePath,"r") as fo:
-        empFName, empLName, empSalary,  empEmailId = raw_input("Enter employee first name: "), raw_input("Enter employee last name: "), raw_input("Enter employee salary: "), raw_input("Enter employee Email ID: ");
-        if(empFName == ""):
-            record = fh.readFile(fo,str(lineNum-1),0);
-            empDetails = record[0].split('|');
-            empFName = empDetails[1];
-        if(empLName == ""):
-            record = fh.readFile(fo,str(lineNum-1),0);
-            empDetails = record[0].split('|');
-            empLName = empDetails[2];
-        if(empSalary == ""):
-            record = fh.readFile(fo,str(lineNum-1),0);
-            empDetails = record[0].split('|');
-            empSalary = empDetails[3];
-        if(empEmailId == ""):
-            record = fh.readFile(fo,str(lineNum-1),0);
-            empDetails = record[0].split('|');
-            empEmailId = empDetails[4];
-        updateStr = str(lineNum-1)+"|"+empFName+"|"+empLName+"|"+empSalary+"|"+empEmailId;
-        fo.seek(0);
-        fh.updateRecord(fo,FilePath,updateStr,lineNum-1);
+    empFName, empLName, empSalary,  empEmailId = raw_input("Enter employee first name: "), raw_input("Enter employee last name: "), raw_input("Enter employee salary: "), raw_input("Enter employee Email ID: ");
+    if(empFName == ""):
+        record = fh.readFile(FilePath,str(lineNum-1),0);
+        empDetails = record[0].split('|');
+        empFName = empDetails[1];
+    if(empLName == ""):
+        record = fh.readFile(FilePath,str(lineNum-1),0);
+        empDetails = record[0].split('|');
+        empLName = empDetails[2];
+    if(empSalary == ""):
+        record = fh.readFile(FilePath,str(lineNum-1),0);
+        empDetails = record[0].split('|');
+        empSalary = empDetails[3];
+    if(empEmailId == ""):
+        record = fh.readFile(FilePath,str(lineNum-1),0);
+        empDetails = record[0].split('|');
+        empEmailId = empDetails[4];
+    updateStr = str(lineNum-1)+"|"+empFName+"|"+empLName+"|"+empSalary+"|"+empEmailId;
+    fh.updateRecord(FilePath,FilePath,updateStr,lineNum-1);
 
 
 def deleteEmployee():
     lineNum = input("Enter the line number of the entry you want to delete: ");
-    with open(FilePath,"r") as fo:
-        fh.deleteRecord(fo,FilePath,lineNum-1,CounterFilePath);
+    fh.deleteRecord(FilePath,FilePath,lineNum-1,CounterFilePath);
 
 
 def main():
@@ -77,14 +71,17 @@ def main():
         elif(choice == 2):
             searchEmployee();
         elif(choice == 3):
+            fh.printFile(FilePath);
             updateEmployee();
+            fh.printFile(FilePath);
         elif(choice == 4):
+            fh.printFile(FilePath);
             deleteEmployee();
+            fh.printFile(FilePath);
         elif(choice == 0):
             goOn = False;
         elif(choice == 5):
-            with open(FilePath,"r") as fo:
-                fh.printFile(fo);
+            fh.printFile(FilePath);
         else:
             print "Wrong Choice!!!";
 
