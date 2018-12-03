@@ -4,17 +4,24 @@ import sys;
 FileName='FileIO.txt'
 
 def fileInput(fw,numOfEmployees):
+
+    #Getting the value of counter
     frc = open(os.path.dirname(os.path.realpath(__file__))+"/counter.txt","r");
     counter = int(frc.read());
     frc.close();
+
+    #Taking input and writing to the file
     for i in range(counter,numOfEmployees+counter):
         empFName, empLName, empSalary,  empEmailId = raw_input("Enter employee first name: "), raw_input("Enter employee last name: "), raw_input("Enter employee salary: "), raw_input("Enter employee Email ID: ");
         string = str(i)+" "+empFName+" "+empLName+" "+empSalary+" "+empEmailId+"\n";
         fw.write(string);
         counter += 1;
+
+    #Writing back to counterthe updated value.
     fwc = open(os.path.dirname(os.path.realpath(__file__))+"/counter.txt","w");
     fwc.write(str(counter)+"\n");
     fwc.close();
+
 
 def fileSearch(fw, searchStr):
     line = fw.readline();
@@ -24,26 +31,38 @@ def fileSearch(fw, searchStr):
             print line;
         line = fw.readline();
 
-def fileUpdate(lineNum):
+
+def fileUpdate(fw,lineNum):
+
+    #Taking the new record as input
     empFName, empLName, empSalary,  empEmailId = raw_input("Enter employee first name: "), raw_input("Enter employee last name: "), raw_input("Enter employee salary: "), raw_input("Enter employee Email ID: ");
-    fr = open(string, "r");
+    updateStr = str(lineNum)+" "+empFName+" "+empLName+" "+empSalary+" "+empEmailId+"\n";
+
+    #Replacing the given record with he updated record and writing back to file
     lines = fw.readlines();
-    fr.close();
     fwu = open(string, "w");
-    lines[lineNum]= str(lineNum)+" "+empFName+" "+empLName+" "+empSalary+" "+empEmailId+"\n";
+    lines[lineNum]= updateStr;
     for line in lines:
         fwu.write(line);
     fwu.close();
 
+
 def fileDelete(lineNum):
-    fr = open(string, "r");
+
+    #Deleting the record
     lines = fw.readlines();
-    fr.close();
     fwu = open(string, "w");
     lines.pop(lineNum);
+
+    #Correcting the Employee Ids and Writing Back to File
     for line in lines:
+        empId, empFName, empLName, empSalary,  empEmailId = line.split();
+        empId = str(lines.index(line));
+        line = empId+" "+empFName+" "+empLName+" "+empSalary+" "+empEmailId+"\n";
         fwu.write(line);
     fwu.close();
+
+    #Reducing Counter value
     frc = open(os.path.dirname(os.path.realpath(__file__))+"/counter.txt","r");
     counter = int(frc.read());
     frc.close();
@@ -51,12 +70,14 @@ def fileDelete(lineNum):
     fwc.write(str(counter-1)+"\n");
     fwc.close();
 
+
 def filePrint():
     fw.seek(0);
     lines = fw.readlines();
     print "The File: "
     for line in lines:
         print line;
+
 
 def crud():
 
@@ -75,7 +96,7 @@ def crud():
     #Updating an entry in the file
     fw.seek(0);
     lineNum = int(input("Enter the entry you want to update(The entries start with 0 so the 1st entry is 0th entry and so on.): "));
-    fileUpdate(lineNum);
+    fileUpdate(fw,lineNum);
     filePrint();
 
     #Deleting an entry from the file
@@ -86,6 +107,7 @@ def crud():
 
     #Closing the file
     fw.close();
+
 
 try:
     string = os.path.dirname(os.path.realpath(__file__))+'/'+FileName;

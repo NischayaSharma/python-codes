@@ -1,3 +1,2 @@
-0 Nischaya Sharma 15000 nischaya01@gmail.com
-1 Nikhil Sharma 300000 nikhildx@gmail.com
-2 Sharad Sharma 100000 sharad72@gmail.com
+0 Nikhil Sharma 300000 nikhildx@gmail.com
+1 Sharad Sharma 100000 sharad72@gmail.com
