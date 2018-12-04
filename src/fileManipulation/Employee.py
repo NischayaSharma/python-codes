@@ -53,7 +53,7 @@ def updateEmployee():
         record = fh.readFile(FilePath,str(lineNum-1),0);
         empDetails = record[0].split('|');
         empEmailId = empDetails[4];
-    updateStr = str(lineNum-1)+"|"+empFName+"|"+empLName+"|"+empSalary+"|"+empEmailId;
+    updateStr = str(lineNum-1)+"|"+empFName+"|"+empLName+"|"+empSalary+"|"+empEmailId+"\n";
     fh.updateRecord(FilePath,FilePath,updateStr,lineNum-1);
 
 
