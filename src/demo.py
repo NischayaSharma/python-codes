@@ -1,3 +1,11 @@
-import webbrowser
-google = raw_input('Google search:')
-webbrowser.open_new_tab('http://www.google.com/search?btnG=1&q=%s' % google)
+#!/usr/bin/python
+
+print "Content-type:text/html\r\n\r\n"
+print '<html>'
+print '<head>'
+print '<title>Hello Word - First CGI Program</title>'
+print '</head>'
+print '<body>'
+print '<h2>Hello Word! This is my first CGI program</h2>'
+print '</body>'
+print '</html>'
