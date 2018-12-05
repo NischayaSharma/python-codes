@@ -1,5 +1,5 @@
 
-def createFile(FilePath,numOfRecords,data,counterFile):
+def createFile(FilePath,data,counterFile):
     #Getting the value of counter
     with open(counterFile,"r") as frc:
         counter = int(frc.read());
@@ -7,10 +7,9 @@ def createFile(FilePath,numOfRecords,data,counterFile):
 
     #Taking input and writing to the file
     with open(FilePath,"a+") as fo:
-        for i in range(counter,numOfRecords+counter):
-            string = str(i)+"|"+data[i-initCounter];
-            fo.write(string);
-            counter += 1;
+        string = str(counter)+"|"+data;
+        fo.write(string);
+        counter += 1;
 
     #Writing back to counter the updated value.
     with open(counterFile,"w") as fwc:

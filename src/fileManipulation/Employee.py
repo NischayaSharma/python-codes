@@ -4,39 +4,17 @@ import os;
 CounterFilePath = os.path.dirname(os.path.realpath(__file__))+"/counter.txt";
 FilePath = os.path.dirname(os.path.realpath(__file__))+"/FileIO.txt";
 
-def createEmployee():
-    numOfEmployees = int(input("Enter number of employees: "));
-    empDetails = [];
-    for i in range(numOfEmployees):
-        empFName, empLName, empSalary,  empEmailId = raw_input("Enter employee first name: "), raw_input("Enter employee last name: "), raw_input("Enter employee salary: "), raw_input("Enter employee Email ID: ");
-        string = empFName+"|"+empLName+"|"+empSalary+"|"+empEmailId+"\n";
-        empDetails.append(string);
-        fh.createFile(FilePath,numOfEmployees,empDetails,CounterFilePath);
+def createEmployee(empFName, empLName, empSalary,  empEmailId):
+    string = empFName+"|"+empLName+"|"+empSalary+"|"+empEmailId+"\n";
+    fh.createFile(FilePath,string,CounterFilePath);
 
 
-def searchEmployee():
-    choice = int(input("Press:\n1 to search by First Name\n2 to search by Last Name\n3 to search by Salary\n4 to search by Email ID\n"));
-    print "Enter the",;
-    if(choice == 1):
-        print "First Name:",;
-    elif(choice == 2):
-        print "Last Name:",;
-    elif(choice == 3):
-        print "Salary:",;
-    elif(choice == 4):
-        print "Email ID:",;
-    else:
-        print "Wrong Choice!!!";
-
-    searchStr = raw_input();
+def searchEmployee(searchStr,choice):
     string = fh.readFile(FilePath,searchStr,choice);
-    print('\n'.join(string));
+    return string;
 
 
-def updateEmployee():
-    print "Leave the entries empty if you dont want to update that entry.";
-    lineNum = input("Enter the line number of the entry you want to update: ");
-    empFName, empLName, empSalary,  empEmailId = raw_input("Enter employee first name: "), raw_input("Enter employee last name: "), raw_input("Enter employee salary: "), raw_input("Enter employee Email ID: ");
+def updateEmployee(lineNum, empFName, empLName, empSalary,  empEmailId):
     if(empFName == ""):
         record = fh.readFile(FilePath,str(lineNum-1),0);
         empDetails = record[0].split('|');
@@ -57,8 +35,7 @@ def updateEmployee():
     fh.updateRecord(FilePath,FilePath,updateStr,lineNum-1);
 
 
-def deleteEmployee():
-    lineNum = input("Enter the line number of the entry you want to delete: ");
+def deleteEmployee(lineNum):
     fh.deleteRecord(FilePath,FilePath,lineNum-1,CounterFilePath);
 
 
@@ -67,16 +44,37 @@ def main():
     while goOn:
         choice = input("Press:\n1 to enter a new employee\n2 to search employee\n3 to update employee\n4 to delete employee\n5 to view the file\n0 to exit\n");
         if(choice == 1):
-            createEmployee();
+            numOfEmployees = int(input("Enter number of employees: "));
+            for i in range(numOfEmployees):
+                empFName, empLName, empSalary,  empEmailId = raw_input("Enter employee first name: "), raw_input("Enter employee last name: "), raw_input("Enter employee salary: "), raw_input("Enter employee Email ID: ");
+                createEmployee(empFName, empLName, empSalary,  empEmailId);
         elif(choice == 2):
-            searchEmployee();
+            choice = int(input("Press:\n1 to search by First Name\n2 to search by Last Name\n3 to search by Salary\n4 to search by Email ID\n"));
+            print "Enter the",;
+            if(choice == 1):
+                print "First Name:",;
+            elif(choice == 2):
+                print "Last Name:",;
+            elif(choice == 3):
+                print "Salary:",;
+            elif(choice == 4):
+                print "Email ID:",;
+            else:
+                print "Wrong Choice!!!";
+            searchStr = raw_input();
+            string = searchEmployee(searchStr,choice);
+            print('\n'.join(string));
         elif(choice == 3):
             fh.printFile(FilePath);
-            updateEmployee();
+            print "Leave the entries empty if you dont want to update that entry.";
+            lineNum = input("Enter the line number of the entry you want to update: ");
+            empFName, empLName, empSalary,  empEmailId = raw_input("Enter employee first name: "), raw_input("Enter employee last name: "), raw_input("Enter employee salary: "), raw_input("Enter employee Email ID: ");
+            updateEmployee(lineNum, empFName, empLName, empSalary,  empEmailId);
             fh.printFile(FilePath);
         elif(choice == 4):
             fh.printFile(FilePath);
-            deleteEmployee();
+            lineNum = input("Enter the line number of the entry you want to delete: ");
+            deleteEmployee(lineNum);
             fh.printFile(FilePath);
         elif(choice == 0):
             goOn = False;
