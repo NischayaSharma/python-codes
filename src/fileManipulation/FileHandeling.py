@@ -3,7 +3,6 @@ def createFile(FilePath,data,counterFile):
     #Getting the value of counter
     with open(counterFile,"r") as frc:
         counter = int(frc.read());
-        initCounter = counter;
 
     #Taking input and writing to the file
     with open(FilePath,"a+") as fo:
