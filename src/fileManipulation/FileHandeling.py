@@ -67,6 +67,5 @@ def deleteRecord(FilePath,fileLoc,lineNum,counterFile):
     #Reducing Counter value
     with open(counterFile,"r") as frc:
         counter = int(frc.read());
-    frc.close();
     with open(counterFile,"w") as fwc:
         fwc.write(str(counter-1)+"\n");
