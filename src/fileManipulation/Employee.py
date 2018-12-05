@@ -2,7 +2,7 @@ import FileHandeling as fh;
 import os;
 
 CounterFilePath = os.path.dirname(os.path.realpath(__file__))+"/counter.txt";
-FilePath = os.path.dirname(os.path.realpath(__file__))+"/FileIO.txt";
+FilePath = os.path.dirname(os.path.realpath(__file__))+"/Employee.txt";
 
 def createEmployee(empFName, empLName, empSalary,  empEmailId):
     string = empFName+"|"+empLName+"|"+empSalary+"|"+empEmailId+"\n";
@@ -42,15 +42,21 @@ def deleteEmployee(lineNum):
 def main():
     goOn = True;
     while goOn:
+
         choice = input("Press:\n1 to enter a new employee\n2 to search employee\n3 to update employee\n4 to delete employee\n5 to view the file\n0 to exit\n");
+
+        #Creating employees
         if(choice == 1):
             numOfEmployees = int(input("Enter number of employees: "));
             for i in range(numOfEmployees):
                 empFName, empLName, empSalary,  empEmailId = raw_input("Enter employee first name: "), raw_input("Enter employee last name: "), raw_input("Enter employee salary: "), raw_input("Enter employee Email ID: ");
                 createEmployee(empFName, empLName, empSalary,  empEmailId);
+
+        #Searching for an employee
         elif(choice == 2):
             choice = int(input("Press:\n1 to search by First Name\n2 to search by Last Name\n3 to search by Salary\n4 to search by Email ID\n"));
-            print "Enter the",;
+
+            #Searching by parameters
             if(choice == 1):
                 print "First Name:",;
             elif(choice == 2):
@@ -61,9 +67,13 @@ def main():
                 print "Email ID:",;
             else:
                 print "Wrong Choice!!!";
+
             searchStr = raw_input();
             string = searchEmployee(searchStr,choice);
             print('\n'.join(string));
+
+        #Updating the Employee
+        # WARNING: Throws Error when updating a non-existent Employee
         elif(choice == 3):
             fh.printFile(FilePath);
             print "Leave the entries empty if you dont want to update that entry.";
@@ -71,13 +81,18 @@ def main():
             empFName, empLName, empSalary,  empEmailId = raw_input("Enter employee first name: "), raw_input("Enter employee last name: "), raw_input("Enter employee salary: "), raw_input("Enter employee Email ID: ");
             updateEmployee(lineNum, empFName, empLName, empSalary,  empEmailId);
             fh.printFile(FilePath);
+
+        #Deleting an Employee
+        # WARNING: Throws Error when deleting a non-existent Employee
         elif(choice == 4):
             fh.printFile(FilePath);
             lineNum = input("Enter the line number of the entry you want to delete: ");
             deleteEmployee(lineNum);
             fh.printFile(FilePath);
+
         elif(choice == 0):
             goOn = False;
+
         elif(choice == 5):
             fh.printFile(FilePath);
         else:
