@@ -41,8 +41,8 @@ def deleteEmployee(lineNum):
 
 def main():
     goOn = True;
-    while goOn:
 
+    while goOn:
         choice = input("Press:\n1 to enter a new employee\n2 to search employee\n3 to update employee\n4 to delete employee\n5 to view the file\n0 to exit\n");
 
         #Creating employees
@@ -73,7 +73,7 @@ def main():
             print('\n'.join(string));
 
         #Updating the Employee
-        # WARNING: Throws Error when updating a non-existent Employee
+        #WARNING: Throws Error when updating a non-existent Employee
         elif(choice == 3):
             fh.printFile(FilePath);
             print "Leave the entries empty if you dont want to update that entry.";
@@ -83,7 +83,7 @@ def main():
             fh.printFile(FilePath);
 
         #Deleting an Employee
-        # WARNING: Throws Error when deleting a non-existent Employee
+        #WARNING: Throws Error when deleting a non-existent Employee
         elif(choice == 4):
             fh.printFile(FilePath);
             lineNum = input("Enter the line number of the entry you want to delete: ");
