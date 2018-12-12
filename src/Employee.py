@@ -1,8 +1,8 @@
 import FileHandeling as fh;
 import os;
 
-CounterFilePath = os.path.dirname(os.path.realpath(__file__))+"/counter.txt";
-FilePath = os.path.dirname(os.path.realpath(__file__))+"/Employee.txt";
+CounterFilePath = "Users/nischaya/Documents/python-codes/files/counter.txt";
+FilePath = "Users/nischaya/Documents/python-codes/files/Employee.txt";
 
 def createEmployee(empFName, empLName, empSalary,  empEmailId):
     string = empFName+"|"+empLName+"|"+empSalary+"|"+empEmailId+"\n";
