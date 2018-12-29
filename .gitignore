@@ -1,5 +1,5 @@
 #Ignoring all the .DS_Store files
-employee-project/src/FileHandeling.pyc
+employee-project/src/FileHandling.pyc
 .DS_Store
 src/.DS_Store
 src/hacker-earth/.DS_Store
