@@ -20,6 +20,7 @@ try:
         c.close();
 
     while True:
+        print "Server Script started";
         c, addr = s.accept();
         print "Socket Up and running with a connection from",addr;
         thread.start_new_thread(main,(c,i,));
