@@ -2,7 +2,7 @@ import socket;
 
 try:
     s = socket.socket();
-    s.connect(('127.0.0.1',12345));
+    s.connect(('18.219.110.96',12345));
     while True:
         str = raw_input("S: ");
         s.send(str.encode());
